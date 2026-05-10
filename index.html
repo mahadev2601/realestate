@@ -3,95 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NexEstate | Premium Living</title>
+    <title>NexEstate | Luxury Parcels</title>
+    <!-- Import Elegant Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
     <style>
-        /* Refined, Elegant Hybrid Colors */
+        /* Luxury Palette & Variables */
         :root {
-            --bg-color: #1a1c23; /* Deep Slate/Midnight */
-            --text-main: #f0f2f5;
-            --text-muted: #9ba1a6;
-            --hybrid-1: #d4af37; /* Soft Metallic Gold */
-            --hybrid-2: #4a6fa5; /* Steel Blue */
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.08);
+            --bg-base: #FDFBF7; /* Alabaster / Ivory */
+            --text-dark: #1A1A1A; /* Deep Charcoal */
+            --text-light: #5A5A5A; /* Muted Gray */
+            --gold: #B59564; /* Champagne Gold */
+            --hybrid-slate: #2C3539; /* Gunmetal Slate */
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            overflow: hidden; /* Prevents whole-page scrolling */
+            background-color: var(--bg-base);
+            color: var(--text-dark);
+            font-family: 'Lato', sans-serif;
+            overflow: hidden; /* Single Page Application feel */
             height: 100vh;
             display: flex;
             flex-direction: column;
-            /* Subtle, non-glowing background gradient */
-            background-image: linear-gradient(135deg, #13151a 0%, #1a1c23 100%);
+        }
+
+        h1, h2, h3, .logo {
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
         }
 
         /* Navigation */
         header {
-            padding: 20px 50px;
+            padding: 30px 60px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--glass-border);
+            background: transparent;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
             z-index: 100;
         }
 
         .logo {
-            font-size: 26px;
-            font-weight: 300;
-            letter-spacing: 1px;
-            color: var(--hybrid-1);
+            font-size: 28px;
+            letter-spacing: 2px;
+            color: var(--text-dark);
+            text-transform: uppercase;
         }
         
-        .logo strong {
-            font-weight: 700;
-            color: var(--text-main);
+        .logo span {
+            color: var(--gold);
+            font-style: italic;
+            text-transform: lowercase;
         }
 
         nav ul {
             display: flex;
             list-style: none;
-            gap: 30px;
+            gap: 40px;
         }
 
         nav ul li a {
-            color: var(--text-muted);
+            color: var(--text-light);
             text-decoration: none;
-            font-weight: 500;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
             cursor: pointer;
-            transition: 0.3s ease;
-            padding: 8px 12px;
-            border-radius: 4px;
-            font-size: 0.95rem;
+            transition: color 0.4s ease;
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--gold);
+            transition: width 0.4s ease;
         }
 
         nav ul li a:hover, nav ul li a.active {
-            color: var(--text-main);
-            background: rgba(212, 175, 55, 0.1); /* Very subtle gold tint */
+            color: var(--text-dark);
         }
 
-        /* Main Content Container */
+        nav ul li a:hover::after, nav ul li a.active::after {
+            width: 100%;
+        }
+
+        /* Main Container */
         main {
             flex: 1;
             position: relative;
             overflow-y: auto; 
-            padding: 50px 80px;
+            padding: 60px 80px;
         }
 
-        /* Sections */
+        /* Sections (SPA Logic) */
         .section {
             display: none;
-            animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            animation: fadeIn 0.8s ease-in-out;
             height: 100%;
         }
 
@@ -99,152 +119,159 @@
             display: block;
         }
 
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes fadeIn {
+            from { opacity: 0; filter: blur(5px); }
+            to { opacity: 1; filter: blur(0); }
         }
 
-        /* Typography & Utility */
-        h1 {
-            font-size: 3.5rem;
-            font-weight: 300;
-            margin-bottom: 20px;
-            color: var(--text-main);
-            line-height: 1.2;
-        }
-
-        h2 {
-            font-size: 2.2rem;
-            font-weight: 400;
-            margin-bottom: 25px;
-            color: var(--hybrid-1);
-        }
-
+        /* Buttons */
         .btn {
-            background: var(--hybrid-2);
-            border: 1px solid transparent;
-            padding: 14px 30px;
-            color: white;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            border-radius: 4px;
+            background: transparent;
+            border: 1px solid var(--text-dark);
+            padding: 15px 35px;
+            color: var(--text-dark);
+            font-family: 'Lato', sans-serif;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
         }
 
         .btn:hover {
-            background: transparent;
-            border-color: var(--hybrid-2);
-            color: var(--hybrid-2);
+            background: var(--text-dark);
+            color: var(--bg-base);
         }
 
         .btn-gold {
-            background: var(--hybrid-1);
-            color: #111;
+            border-color: var(--gold);
+            color: var(--gold);
         }
 
         .btn-gold:hover {
-            background: transparent;
-            border-color: var(--hybrid-1);
-            color: var(--hybrid-1);
+            background: var(--gold);
+            color: #fff;
         }
 
-        /* Home Section Layout */
+        /* Home Layout */
         .home-layout {
             display: flex;
             align-items: center;
             justify-content: space-between;
             height: 100%;
-            gap: 40px;
         }
 
         .home-text {
-            max-width: 50%;
+            max-width: 55%;
+        }
+
+        .home-text h1 {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            color: var(--hybrid-slate);
         }
 
         .home-text p {
             font-size: 1.1rem;
-            margin-bottom: 35px;
-            line-height: 1.7;
-            color: var(--text-muted);
+            margin-bottom: 40px;
+            line-height: 1.8;
+            color: var(--text-light);
+            font-weight: 300;
         }
 
-        /* Toned-down 3D Interactive CSS Cube */
+        /* Elegant 3D Wireframe Cube */
         .scene {
             width: 350px;
             height: 350px;
-            perspective: 800px;
+            perspective: 1000px;
         }
         .cube {
             width: 100%;
             height: 100%;
             position: relative;
             transform-style: preserve-3d;
-            animation: spinCube 15s infinite linear;
+            animation: slowSpin 25s infinite linear;
         }
         .face {
             position: absolute;
             width: 350px;
             height: 350px;
-            background: rgba(74, 111, 165, 0.05);
-            border: 1px solid rgba(212, 175, 55, 0.3); /* Subtle gold border */
+            background: rgba(253, 251, 247, 0.4);
+            border: 1px solid var(--gold);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
-            font-weight: 300;
-            color: var(--text-muted);
-            backdrop-filter: blur(4px);
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            backdrop-filter: blur(2px);
         }
         .front  { transform: translateZ(175px); }
         .back   { transform: rotateY(180deg) translateZ(175px); }
         .right  { transform: rotateY(90deg) translateZ(175px); }
         .left   { transform: rotateY(-90deg) translateZ(175px); }
         .top    { transform: rotateX(90deg) translateZ(175px); }
-        .bottom { transform: rotateX(-90deg) translateZ(175px); }
+        .bottom { transform: rotateX(-90deg) translateZ(175px); background: rgba(181, 149, 100, 0.1); }
 
-        @keyframes spinCube {
-            from { transform: rotateX(15deg) rotateY(0deg); }
-            to { transform: rotateX(15deg) rotateY(360deg); }
+        @keyframes slowSpin {
+            from { transform: rotateX(20deg) rotateY(0deg); }
+            to { transform: rotateX(20deg) rotateY(360deg); }
+        }
+
+        /* Typography Headers for Pages */
+        .page-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: var(--hybrid-slate);
+        }
+        .page-subtitle {
+            text-align: center;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--gold);
+            margin-bottom: 50px;
         }
 
         /* Plots Grid */
         .plots-grid, .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
         }
 
-        .plot-square, .project-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 8px;
-            padding: 40px 30px;
+        .plot-card, .project-card {
+            background: #fff;
+            padding: 50px 40px;
             text-align: center;
-            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            border-top: 3px solid transparent;
+            transition: all 0.4s ease;
         }
 
-        .plot-square:hover, .project-card:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(212, 175, 55, 0.4);
-            transform: translateY(-3px);
+        .plot-card:hover, .project-card:hover {
+            border-top: 3px solid var(--gold);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.06);
         }
 
-        .plot-square h3 { color: var(--text-main); font-size: 22px; margin-bottom: 12px; font-weight: 400; }
-        .plot-square .dimensions { color: var(--text-muted); margin-bottom: 20px; font-size: 0.95rem; }
-        .plot-square .price { color: var(--hybrid-1); font-size: 1.4rem; margin-bottom: 25px; }
+        .plot-card h3 { font-size: 2rem; margin-bottom: 15px; }
+        .plot-card .dimensions { color: var(--text-light); font-size: 0.9rem; letter-spacing: 1px; margin-bottom: 25px; text-transform: uppercase; }
+        .plot-card .price { color: var(--gold); font-size: 1.2rem; margin-bottom: 30px; font-family: 'Playfair Display', serif; font-style: italic; }
 
-        .project-card h3 { color: var(--hybrid-2); font-weight: 400; margin-bottom: 15px; }
-        .project-card p { color: var(--text-muted); line-height: 1.6; }
+        .project-card h3 { font-size: 1.8rem; margin-bottom: 20px; }
+        .project-card p { color: var(--text-light); line-height: 1.7; font-weight: 300; }
+        .project-card .status { margin-top: 25px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--gold); }
 
         /* Community Section */
         .community-grid {
             display: flex;
             justify-content: center;
-            gap: 60px;
+            gap: 80px;
             flex-wrap: wrap;
-            margin-top: 50px;
         }
 
         .member {
@@ -252,58 +279,53 @@
         }
 
         .avatar {
-            width: 140px;
-            height: 140px;
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
-            border: 2px solid var(--hybrid-2);
-            padding: 4px;
-            margin-bottom: 20px;
-            transition: 0.3s ease;
-        }
-
-        .member:hover .avatar {
-            border-color: var(--hybrid-1);
+            margin: 0 auto 25px auto;
+            overflow: hidden;
         }
 
         .avatar img {
             width: 100%;
             height: 100%;
-            border-radius: 50%;
             object-fit: cover;
-            filter: grayscale(20%);
+            filter: grayscale(100%) contrast(120%);
+            transition: filter 0.5s ease;
         }
 
-        .member h4 { color: var(--text-main); font-weight: 500; margin-bottom: 5px; font-size: 1.1rem; }
-        .member p { color: var(--text-muted); font-size: 0.9rem; }
+        .member:hover .avatar img {
+            filter: grayscale(0%);
+        }
 
-        /* Contact Section */
-        .contact-form {
+        .member h4 { font-size: 1.4rem; margin-bottom: 8px; color: var(--hybrid-slate); }
+        .member p { color: var(--gold); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Contact Minimalist Form */
+        .contact-wrapper {
             max-width: 600px;
             margin: 0 auto;
-            background: var(--glass-bg);
-            padding: 45px;
-            border-radius: 8px;
-            border: 1px solid var(--glass-border);
         }
 
         .contact-form input, .contact-form textarea {
             width: 100%;
-            padding: 16px;
-            margin-bottom: 20px;
-            background: rgba(0,0,0,0.2);
-            border: 1px solid var(--glass-border);
-            color: var(--text-main);
-            border-radius: 4px;
+            padding: 15px 0;
+            margin-bottom: 35px;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #ddd;
+            color: var(--text-dark);
+            font-family: 'Lato', sans-serif;
+            font-size: 1rem;
             outline: none;
-            transition: 0.3s ease;
+            transition: border-color 0.4s ease;
         }
 
         .contact-form input:focus, .contact-form textarea:focus {
-            border-color: var(--hybrid-2);
-            background: rgba(0,0,0,0.4);
+            border-bottom: 1px solid var(--gold);
         }
 
-        /* Floating Contact Button (Subtle) */
+        /* Floating Contact Button */
         .floating-contact {
             position: fixed;
             bottom: 40px;
@@ -313,26 +335,36 @@
         
         .floating-contact button {
             border-radius: 50%; 
-            width: 65px; 
-            height: 65px; 
-            font-size: 24px; 
+            width: 60px; 
+            height: 60px; 
+            font-size: 1.2rem; 
+            background: var(--hybrid-slate);
+            color: var(--gold);
+            border: none;
+            cursor: pointer;
             display: flex; 
             align-items: center; 
             justify-content: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .floating-contact button:hover {
+            transform: scale(1.1);
+            background: var(--text-dark);
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">Nex<strong>Estate</strong></div>
+        <div class="logo">Nex<span>Estate</span></div>
         <nav>
             <ul id="nav-links">
-                <li><a onclick="showSection('home')" class="active">Home</a></li>
-                <li><a onclick="showSection('plots')">Available Plots</a></li>
-                <li><a onclick="showSection('projects')">Our Projects</a></li>
-                <li><a onclick="showSection('community')">Community</a></li>
+                <li><a onclick="showSection('home')" class="active">The Vision</a></li>
+                <li><a onclick="showSection('plots')">Estate Plots</a></li>
+                <li><a onclick="showSection('projects')">Portfolio</a></li>
+                <li><a onclick="showSection('community')">The Team</a></li>
             </ul>
         </nav>
     </header>
@@ -342,22 +374,22 @@
         <section id="home" class="section active">
             <div class="home-layout">
                 <div class="home-text">
-                    <h1>Curated spaces for modern living.</h1>
-                    <p>Experience real estate with clarity and precision. Explore our dimensionally accurate plots, view architectural layouts, and join a community built for the future.</p>
-                    <div style="display: flex; gap: 15px;">
-                        <button class="btn btn-gold" onclick="showSection('plots')">Explore Plots</button>
-                        <button class="btn" onclick="showSection('projects')">View Projects</button>
+                    <h1>A new standard of legacy living.</h1>
+                    <p>Discover exclusively curated, perfectly square estate plots designed for architectural brilliance. Join a discerning community where luxury meets dimensional perfection.</p>
+                    <div style="display: flex; gap: 20px;">
+                        <button class="btn btn-gold" onclick="showSection('plots')">View Parcels</button>
+                        <button class="btn" onclick="showSection('projects')">Our Portfolio</button>
                     </div>
                 </div>
-                <!-- Subtle Interactive CSS 3D Cube -->
+                <!-- Elegant 3D Wireframe Cube -->
                 <div class="scene">
                     <div class="cube">
-                        <div class="face front">Plot 4A Layout</div>
-                        <div class="face back">Elevation</div>
+                        <div class="face front">Bespoke Layout</div>
+                        <div class="face back">Architecture</div>
                         <div class="face right">NexEstate</div>
                         <div class="face left">NexEstate</div>
-                        <div class="face top">Aerial View</div>
-                        <div class="face bottom">Foundation</div>
+                        <div class="face top">Master Plan</div>
+                        <div class="face bottom"></div>
                     </div>
                 </div>
             </div>
@@ -365,98 +397,96 @@
 
         <!-- PLOTS SECTION -->
         <section id="plots" class="section">
-            <h2>Select Your Plot</h2>
-            <p style="color: var(--text-muted); margin-bottom: 30px;">Precision mapped, ready-to-build square plots.</p>
+            <h2 class="page-title">Curated Parcels</h2>
+            <p class="page-subtitle">Perfectly Square Plots for Masterpieces</p>
             <div class="plots-grid">
-                <div class="plot-square">
-                    <h3>1,200 Sq.Ft</h3>
-                    <p class="dimensions">30x40 Square Plot</p>
-                    <p class="price">$45,000</p>
-                    <button class="btn" onclick="showSection('contact')">Inquire</button>
+                <div class="plot-card">
+                    <h3>The Classic</h3>
+                    <p class="dimensions">1,200 Sq.Ft — 30x40 Square Plot</p>
+                    <p class="price">Starting at $145,000</p>
+                    <button class="btn" onclick="showSection('contact')">Request Details</button>
                 </div>
-                <div class="plot-square">
-                    <h3>2,400 Sq.Ft</h3>
-                    <p class="dimensions">40x60 Square Plot</p>
-                    <p class="price">$85,000</p>
-                    <button class="btn" onclick="showSection('contact')">Inquire</button>
+                <div class="plot-card">
+                    <h3>The Grand</h3>
+                    <p class="dimensions">2,400 Sq.Ft — 40x60 Square Plot</p>
+                    <p class="price">Starting at $285,000</p>
+                    <button class="btn" onclick="showSection('contact')">Request Details</button>
                 </div>
-                <div class="plot-square">
-                    <h3>4,000 Sq.Ft</h3>
-                    <p class="dimensions">50x80 Square Plot</p>
-                    <p class="price">$140,000</p>
-                    <button class="btn" onclick="showSection('contact')">Inquire</button>
-                </div>
-                <div class="plot-square" style="border-color: rgba(212, 175, 55, 0.4);">
-                    <h3>Premium Corner</h3>
-                    <p class="dimensions">1,500 Sq.Ft</p>
-                    <p class="price">$60,000</p>
-                    <button class="btn btn-gold" onclick="showSection('contact')">Inquire</button>
+                <div class="plot-card">
+                    <h3>The Estate</h3>
+                    <p class="dimensions">4,000 Sq.Ft — 50x80 Square Plot</p>
+                    <p class="price">Starting at $540,000</p>
+                    <button class="btn btn-gold" onclick="showSection('contact')">Private Viewing</button>
                 </div>
             </div>
         </section>
 
         <!-- PROJECTS SECTION -->
         <section id="projects" class="section">
-            <h2>Developed Projects</h2>
-            <p style="color: var(--text-muted); margin-bottom: 30px;">A portfolio of our completed and thriving communities.</p>
+            <h2 class="page-title">Our Portfolio</h2>
+            <p class="page-subtitle">Award-Winning Developments</p>
             <div class="projects-grid">
                 <div class="project-card">
-                    <h3>The Horizon Residency</h3>
-                    <p>Fully developed gated community featuring 50+ demarcated square plots with underground utilities.</p>
-                    <p style="color: var(--hybrid-1); margin-top: 20px; font-size: 0.9rem;">Delivered: 2025</p>
+                    <h3>The Belvedere</h3>
+                    <p>A master-planned enclave featuring 50 exclusive square-foot plots, enveloped by private botanical gardens and slate-paved avenues.</p>
+                    <p class="status">Fully Acquired</p>
                 </div>
                 <div class="project-card">
-                    <h3>Azure Villas</h3>
-                    <p>Modern architectural structures integrated with sustainable energy grids and community parks.</p>
-                    <p style="color: var(--hybrid-1); margin-top: 20px; font-size: 0.9rem;">Delivered: 2024</p>
+                    <h3>Aura Manors</h3>
+                    <p>Architectural excellence combining hybrid slate foundations with champagne gold finishings, built upon perfectly symmetrical parcels.</p>
+                    <p class="status">Phase 2 Selling</p>
                 </div>
                 <div class="project-card">
-                    <h3>The Meridian Commercial</h3>
-                    <p>Prime commercial zones strictly divided into square-foot plots designed for high-end retail.</p>
-                    <p style="color: var(--hybrid-1); margin-top: 20px; font-size: 0.9rem;">Delivered: 2026</p>
+                    <h3>The Sterling Hub</h3>
+                    <p>Boutique commercial zoning offering elite square plots meticulously arranged for high-end luxury retail and dining.</p>
+                    <p class="status">Completion 2027</p>
                 </div>
             </div>
         </section>
 
         <!-- COMMUNITY SECTION -->
         <section id="community" class="section">
-            <h2 style="text-align: center;">Meet the Community</h2>
-            <p style="color: var(--text-muted); text-align: center;">The people who make NexEstate a trusted neighborhood.</p>
+            <h2 class="page-title">The Community</h2>
+            <p class="page-subtitle">The Minds Behind NexEstate</p>
             <div class="community-grid">
                 <div class="member">
-                    <div class="avatar"><img src="https://i.pravatar.cc/150?img=68" alt="Sarah Jenkins"></div>
+                    <div class="avatar"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80" alt="Sarah Jenkins"></div>
                     <h4>Sarah Jenkins</h4>
-                    <p>Lead Architect</p>
+                    <p>Principal Architect</p>
                 </div>
                 <div class="member">
-                    <div class="avatar"><img src="https://i.pravatar.cc/150?img=11" alt="David Chen"></div>
+                    <div class="avatar"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=300&q=80" alt="David Chen"></div>
                     <h4>David Chen</h4>
-                    <p>Community Manager</p>
+                    <p>Director of Estates</p>
                 </div>
                 <div class="member">
-                    <div class="avatar"><img src="https://i.pravatar.cc/150?img=47" alt="Elena Rossi"></div>
+                    <div class="avatar"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=300&q=80" alt="Elena Rossi"></div>
                     <h4>Elena Rossi</h4>
-                    <p>Resident / Plot Owner</p>
+                    <p>Resident Ambassador</p>
                 </div>
             </div>
         </section>
 
         <!-- CONTACT SECTION -->
         <section id="contact" class="section">
-            <h2 style="text-align: center;">Start the Conversation</h2>
-            <p style="color: var(--text-muted); text-align: center; margin-bottom: 30px;">Reach out regarding any specific plot or project inquiry.</p>
-            <div class="contact-form">
-                <input type="text" placeholder="Your Full Name" required>
-                <input type="email" placeholder="Your Email Address" required>
-                <textarea rows="5" placeholder="Which plot size or project are you interested in?" required></textarea>
-                <button class="btn btn-gold" style="width: 100%;">Submit Inquiry</button>
+            <h2 class="page-title">Private Inquiry</h2>
+            <p class="page-subtitle">Schedule a Consultation</p>
+            <div class="contact-wrapper">
+                <div class="contact-form">
+                    <input type="text" placeholder="Full Name" required>
+                    <input type="email" placeholder="Email Address" required>
+                    <textarea rows="3" placeholder="Which estate plot or project are you inquiring about?" required></textarea>
+                    <button class="btn btn-gold" style="width: 100%; margin-top: 10px;">Send Message</button>
+                </div>
             </div>
         </section>
     </main>
 
-    <!-- Global Contact Button -->
+    <!-- Global Floating Contact -->
     <div class="floating-contact">
-        <button class="btn btn-gold" onclick="showSection('contact')" title="Contact Us">✉</button>
+        <button onclick="showSection('contact')" title="Contact Concierge">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        </button>
     </div>
 
     <!-- Application Logic -->

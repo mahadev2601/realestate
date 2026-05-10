@@ -3,20 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NexEstate | Luxury Parcels</title>
-    <!-- Import Elegant Google Fonts -->
+    <title>NexEstate | Legacy Parcels</title>
+    <!-- Premium Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     
     <style>
-        /* Luxury Palette & Variables */
+        /* Ultra-Premium Forest & Brass Palette */
         :root {
-            --bg-base: #FDFBF7; /* Alabaster / Ivory */
-            --text-dark: #1A1A1A; /* Deep Charcoal */
-            --text-light: #5A5A5A; /* Muted Gray */
-            --gold: #B59564; /* Champagne Gold */
-            --hybrid-slate: #2C3539; /* Gunmetal Slate */
+            --bg-primary: #0A221C; /* Deep Forest Green */
+            --bg-secondary: #0F2E26; /* Slightly lighter Green */
+            --text-light: #F9F6F0; /* Soft Cream */
+            --text-muted: #A3B1AA; /* Sage Gray */
+            --brass: #C5A059; /* Brushed Brass / Muted Gold */
+            --brass-hover: #D8B570;
         }
 
         * {
@@ -25,49 +26,53 @@
             box-sizing: border-box;
         }
 
-        body {
-            background-color: var(--bg-base);
-            color: var(--text-dark);
-            font-family: 'Lato', sans-serif;
-            overflow: hidden; /* Single Page Application feel */
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
+        html {
+            scroll-behavior: smooth; /* Enables smooth scrolling between sections */
         }
 
-        h1, h2, h3, .logo {
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-light);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .logo {
             font-family: 'Playfair Display', serif;
             font-weight: 400;
         }
 
-        /* Navigation */
+        /* Sticky Navigation */
         header {
-            padding: 30px 60px;
+            position: sticky;
+            top: 0;
+            padding: 25px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: transparent;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            z-index: 100;
+            background: rgba(10, 34, 28, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+            z-index: 1000;
         }
 
         .logo {
-            font-size: 28px;
+            font-size: 26px;
             letter-spacing: 2px;
-            color: var(--text-dark);
+            color: var(--text-light);
             text-transform: uppercase;
         }
         
         .logo span {
-            color: var(--gold);
+            color: var(--brass);
             font-style: italic;
-            text-transform: lowercase;
         }
 
         nav ul {
             display: flex;
             list-style: none;
-            gap: 40px;
+            gap: 35px;
         }
 
         nav ul li a {
@@ -75,115 +80,103 @@
             text-decoration: none;
             font-size: 0.85rem;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            cursor: pointer;
-            transition: color 0.4s ease;
-            position: relative;
+            letter-spacing: 2px;
+            transition: color 0.3s ease;
         }
 
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 1px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--gold);
-            transition: width 0.4s ease;
-        }
-
-        nav ul li a:hover, nav ul li a.active {
-            color: var(--text-dark);
-        }
-
-        nav ul li a:hover::after, nav ul li a.active::after {
-            width: 100%;
-        }
-
-        /* Main Container */
-        main {
-            flex: 1;
-            position: relative;
-            overflow-y: auto; 
-            padding: 60px 80px;
-        }
-
-        /* Sections (SPA Logic) */
-        .section {
-            display: none;
-            animation: fadeIn 0.8s ease-in-out;
-            height: 100%;
-        }
-
-        .section.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; filter: blur(5px); }
-            to { opacity: 1; filter: blur(0); }
+        nav ul li a:hover {
+            color: var(--brass);
         }
 
         /* Buttons */
         .btn {
+            display: inline-block;
             background: transparent;
-            border: 1px solid var(--text-dark);
-            padding: 15px 35px;
-            color: var(--text-dark);
-            font-family: 'Lato', sans-serif;
-            font-size: 0.8rem;
+            border: 1px solid var(--brass);
+            padding: 16px 40px;
+            color: var(--brass);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 2px;
             cursor: pointer;
+            text-decoration: none;
             transition: all 0.4s ease;
         }
 
         .btn:hover {
-            background: var(--text-dark);
-            color: var(--bg-base);
+            background: var(--brass);
+            color: var(--bg-primary);
         }
 
-        .btn-gold {
-            border-color: var(--gold);
-            color: var(--gold);
+        .btn-filled {
+            background: var(--brass);
+            color: var(--bg-primary);
         }
 
-        .btn-gold:hover {
-            background: var(--gold);
-            color: #fff;
+        .btn-filled:hover {
+            background: var(--brass-hover);
+            border-color: var(--brass-hover);
         }
 
-        /* Home Layout */
-        .home-layout {
+        /* Generic Section Styling */
+        section {
+            padding: 100px 10%;
+            min-height: 80vh; /* Ensures sections are large but scrollable */
             display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-header h2 {
+            font-size: 3.5rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            color: var(--brass);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.9rem;
+        }
+
+        /* Home Section */
+        #home {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: row;
             align-items: center;
             justify-content: space-between;
-            height: 100%;
+            background: radial-gradient(circle at right center, var(--bg-secondary) 0%, var(--bg-primary) 100%);
         }
 
-        .home-text {
-            max-width: 55%;
+        .home-content {
+            max-width: 50%;
         }
 
-        .home-text h1 {
-            font-size: 4.5rem;
+        .home-content h1 {
+            font-size: 5rem;
             line-height: 1.1;
-            margin-bottom: 25px;
-            color: var(--hybrid-slate);
+            margin-bottom: 30px;
         }
 
-        .home-text p {
+        .home-content p {
             font-size: 1.1rem;
+            color: var(--text-muted);
             margin-bottom: 40px;
-            line-height: 1.8;
-            color: var(--text-light);
-            font-weight: 300;
+            max-width: 80%;
         }
 
-        /* Elegant 3D Wireframe Cube */
+        /* 3D Brass Wireframe Cube */
         .scene {
-            width: 350px;
-            height: 350px;
+            width: 400px;
+            height: 400px;
             perspective: 1000px;
         }
         .cube {
@@ -191,167 +184,263 @@
             height: 100%;
             position: relative;
             transform-style: preserve-3d;
-            animation: slowSpin 25s infinite linear;
+            animation: slowSpin 20s infinite linear;
         }
         .face {
             position: absolute;
-            width: 350px;
-            height: 350px;
-            background: rgba(253, 251, 247, 0.4);
-            border: 1px solid var(--gold);
+            width: 400px;
+            height: 400px;
+            background: rgba(10, 34, 28, 0.4);
+            border: 2px solid var(--brass);
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: 'Playfair Display', serif;
             font-style: italic;
-            font-size: 1.2rem;
-            color: var(--text-dark);
-            backdrop-filter: blur(2px);
+            font-size: 1.5rem;
+            color: var(--brass);
+            box-shadow: inset 0 0 40px rgba(197, 160, 89, 0.1);
         }
-        .front  { transform: translateZ(175px); }
-        .back   { transform: rotateY(180deg) translateZ(175px); }
-        .right  { transform: rotateY(90deg) translateZ(175px); }
-        .left   { transform: rotateY(-90deg) translateZ(175px); }
-        .top    { transform: rotateX(90deg) translateZ(175px); }
-        .bottom { transform: rotateX(-90deg) translateZ(175px); background: rgba(181, 149, 100, 0.1); }
+        .front  { transform: translateZ(200px); }
+        .back   { transform: rotateY(180deg) translateZ(200px); }
+        .right  { transform: rotateY(90deg) translateZ(200px); }
+        .left   { transform: rotateY(-90deg) translateZ(200px); }
+        .top    { transform: rotateX(90deg) translateZ(200px); }
+        .bottom { transform: rotateX(-90deg) translateZ(200px); background: rgba(197, 160, 89, 0.05); }
 
         @keyframes slowSpin {
-            from { transform: rotateX(20deg) rotateY(0deg); }
-            to { transform: rotateX(20deg) rotateY(360deg); }
+            from { transform: rotateX(15deg) rotateY(0deg); }
+            to { transform: rotateX(15deg) rotateY(360deg); }
         }
 
-        /* Typography Headers for Pages */
-        .page-title {
-            text-align: center;
-            font-size: 3rem;
-            margin-bottom: 10px;
-            color: var(--hybrid-slate);
-        }
-        .page-subtitle {
-            text-align: center;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--gold);
-            margin-bottom: 50px;
-        }
-
-        /* Plots Grid */
-        .plots-grid, .projects-grid {
+        /* Plots Section */
+        #plots { background-color: var(--bg-secondary); }
+        
+        .plots-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 40px;
         }
 
-        .plot-card, .project-card {
-            background: #fff;
+        .plot-card {
+            background: var(--bg-primary);
+            border: 1px solid rgba(197, 160, 89, 0.3);
             padding: 50px 40px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-            border-top: 3px solid transparent;
-            transition: all 0.4s ease;
+            transition: transform 0.4s ease, border-color 0.4s ease;
         }
 
-        .plot-card:hover, .project-card:hover {
-            border-top: 3px solid var(--gold);
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+        .plot-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--brass);
         }
 
-        .plot-card h3 { font-size: 2rem; margin-bottom: 15px; }
-        .plot-card .dimensions { color: var(--text-light); font-size: 0.9rem; letter-spacing: 1px; margin-bottom: 25px; text-transform: uppercase; }
-        .plot-card .price { color: var(--gold); font-size: 1.2rem; margin-bottom: 30px; font-family: 'Playfair Display', serif; font-style: italic; }
+        .plot-card h3 {
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+            color: var(--text-light);
+        }
 
-        .project-card h3 { font-size: 1.8rem; margin-bottom: 20px; }
-        .project-card p { color: var(--text-light); line-height: 1.7; font-weight: 300; }
-        .project-card .status { margin-top: 25px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--gold); }
+        .plot-card .subtitle {
+            color: var(--brass);
+            font-style: italic;
+            margin-bottom: 25px;
+            font-family: 'Playfair Display', serif;
+        }
 
-        /* Community Section */
-        .community-grid {
+        .plot-specs {
+            list-style: none;
+            margin-bottom: 35px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .plot-specs li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
             display: flex;
+            justify-content: space-between;
+        }
+
+        .plot-price {
+            font-size: 1.4rem;
+            color: var(--text-light);
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        /* Projects Section */
+        .project-row {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            margin-bottom: 80px;
+        }
+
+        .project-row:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .project-image {
+            flex: 1;
+            height: 400px;
+            background: var(--bg-secondary);
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            position: relative;
+            display: flex;
+            align-items: center;
             justify-content: center;
-            gap: 80px;
-            flex-wrap: wrap;
-        }
-
-        .member {
-            text-align: center;
-        }
-
-        .avatar {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            margin: 0 auto 25px auto;
+            color: var(--brass);
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.2rem;
             overflow: hidden;
         }
 
-        .avatar img {
+        /* Simulated architectural blueprint background */
+        .project-image::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: 
+                linear-gradient(rgba(197, 160, 89, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(197, 160, 89, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.5;
+        }
+
+        .project-info {
+            flex: 1;
+        }
+
+        .project-info h3 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .project-info p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        /* Community Section */
+        #community { background-color: var(--bg-secondary); }
+
+        .community-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+
+        .member-card {
+            text-align: center;
+            background: var(--bg-primary);
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .member-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 25px auto;
+            border: 2px solid var(--brass);
+            padding: 5px;
+        }
+
+        .member-avatar img {
             width: 100%;
             height: 100%;
+            border-radius: 50%;
             object-fit: cover;
-            filter: grayscale(100%) contrast(120%);
-            transition: filter 0.5s ease;
+            filter: sepia(0.3) grayscale(0.4);
         }
 
-        .member:hover .avatar img {
-            filter: grayscale(0%);
+        .member-card h4 {
+            font-size: 1.6rem;
+            margin-bottom: 5px;
         }
 
-        .member h4 { font-size: 1.4rem; margin-bottom: 8px; color: var(--hybrid-slate); }
-        .member p { color: var(--gold); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+        .member-card .role {
+            color: var(--brass);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
 
-        /* Contact Minimalist Form */
-        .contact-wrapper {
-            max-width: 600px;
+        .member-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Contact Section */
+        .contact-layout {
+            display: flex;
+            gap: 80px;
+            max-width: 1200px;
             margin: 0 auto;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-info h3 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+        }
+
+        .contact-info p {
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .contact-form {
+            flex: 1;
+            background: var(--bg-secondary);
+            padding: 50px;
+            border: 1px solid rgba(197, 160, 89, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--brass);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
         }
 
         .contact-form input, .contact-form textarea {
             width: 100%;
-            padding: 15px 0;
-            margin-bottom: 35px;
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid #ddd;
-            color: var(--text-dark);
-            font-family: 'Lato', sans-serif;
-            font-size: 1rem;
+            padding: 15px;
+            background: var(--bg-primary);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text-light);
+            font-family: 'Montserrat', sans-serif;
             outline: none;
-            transition: border-color 0.4s ease;
+            transition: border-color 0.3s;
         }
 
         .contact-form input:focus, .contact-form textarea:focus {
-            border-bottom: 1px solid var(--gold);
+            border-color: var(--brass);
         }
 
-        /* Floating Contact Button */
-        .floating-contact {
-            position: fixed;
-            bottom: 40px;
-            right: 40px;
-            z-index: 1000;
-        }
-        
-        .floating-contact button {
-            border-radius: 50%; 
-            width: 60px; 
-            height: 60px; 
-            font-size: 1.2rem; 
-            background: var(--hybrid-slate);
-            color: var(--gold);
-            border: none;
-            cursor: pointer;
-            display: flex; 
-            align-items: center; 
-            justify-content: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+        /* Footer */
+        footer {
+            background: #061511;
+            padding: 40px 10%;
+            text-align: center;
+            border-top: 1px solid rgba(197, 160, 89, 0.2);
         }
 
-        .floating-contact button:hover {
-            transform: scale(1.1);
-            background: var(--text-dark);
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
         }
     </style>
 </head>
@@ -360,149 +449,206 @@
     <header>
         <div class="logo">Nex<span>Estate</span></div>
         <nav>
-            <ul id="nav-links">
-                <li><a onclick="showSection('home')" class="active">The Vision</a></li>
-                <li><a onclick="showSection('plots')">Estate Plots</a></li>
-                <li><a onclick="showSection('projects')">Portfolio</a></li>
-                <li><a onclick="showSection('community')">The Team</a></li>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#plots">Plots</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#community">Community</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
         <!-- HOME SECTION -->
-        <section id="home" class="section active">
-            <div class="home-layout">
-                <div class="home-text">
-                    <h1>A new standard of legacy living.</h1>
-                    <p>Discover exclusively curated, perfectly square estate plots designed for architectural brilliance. Join a discerning community where luxury meets dimensional perfection.</p>
-                    <div style="display: flex; gap: 20px;">
-                        <button class="btn btn-gold" onclick="showSection('plots')">View Parcels</button>
-                        <button class="btn" onclick="showSection('projects')">Our Portfolio</button>
-                    </div>
+        <section id="home">
+            <div class="home-content">
+                <h1>Legacy Built on Square Precision.</h1>
+                <p>Welcome to NexEstate. We specialize in exclusively curated, dimensionally perfect square estate plots. Designed for architectural brilliance, our lands offer the ultimate canvas for your legacy.</p>
+                <div style="display: flex; gap: 20px;">
+                    <a href="#plots" class="btn btn-filled">Explore Plots</a>
+                    <a href="#projects" class="btn">View Portfolio</a>
                 </div>
-                <!-- Elegant 3D Wireframe Cube -->
-                <div class="scene">
-                    <div class="cube">
-                        <div class="face front">Bespoke Layout</div>
-                        <div class="face back">Architecture</div>
-                        <div class="face right">NexEstate</div>
-                        <div class="face left">NexEstate</div>
-                        <div class="face top">Master Plan</div>
-                        <div class="face bottom"></div>
-                    </div>
+            </div>
+            <!-- 3D Brass Wireframe Cube -->
+            <div class="scene">
+                <div class="cube">
+                    <div class="face front">Perfect Square</div>
+                    <div class="face back">Architecture</div>
+                    <div class="face right">NexEstate</div>
+                    <div class="face left">NexEstate</div>
+                    <div class="face top">Master Plan</div>
+                    <div class="face bottom">Foundation</div>
                 </div>
             </div>
         </section>
 
         <!-- PLOTS SECTION -->
-        <section id="plots" class="section">
-            <h2 class="page-title">Curated Parcels</h2>
-            <p class="page-subtitle">Perfectly Square Plots for Masterpieces</p>
+        <section id="plots">
+            <div class="section-header">
+                <h2>Curated Parcels</h2>
+                <p>Ready-to-Build Square Dimensions</p>
+            </div>
+            
             <div class="plots-grid">
+                <!-- Plot 1 -->
                 <div class="plot-card">
-                    <h3>The Classic</h3>
-                    <p class="dimensions">1,200 Sq.Ft — 30x40 Square Plot</p>
-                    <p class="price">Starting at $145,000</p>
-                    <button class="btn" onclick="showSection('contact')">Request Details</button>
+                    <h3>The Heritage</h3>
+                    <p class="subtitle">1,200 Sq.Ft</p>
+                    <ul class="plot-specs">
+                        <li><span>Dimensions</span> <span>30x40 Square Plot</span></li>
+                        <li><span>Zoning</span> <span>Residential (R1)</span></li>
+                        <li><span>Utilities</span> <span>Underground Integrated</span></li>
+                        <li><span>Soil Type</span> <span>Compacted Loam</span></li>
+                    </ul>
+                    <span class="plot-price">$145,000</span>
+                    <a href="#contact" class="btn" style="width: 100%; text-align: center;">Inquire Now</a>
                 </div>
+                
+                <!-- Plot 2 -->
                 <div class="plot-card">
                     <h3>The Grand</h3>
-                    <p class="dimensions">2,400 Sq.Ft — 40x60 Square Plot</p>
-                    <p class="price">Starting at $285,000</p>
-                    <button class="btn" onclick="showSection('contact')">Request Details</button>
+                    <p class="subtitle">2,400 Sq.Ft</p>
+                    <ul class="plot-specs">
+                        <li><span>Dimensions</span> <span>40x60 Square Plot</span></li>
+                        <li><span>Zoning</span> <span>Residential / Villa</span></li>
+                        <li><span>Utilities</span> <span>Smart Grid Ready</span></li>
+                        <li><span>Orientation</span> <span>East / West Facing</span></li>
+                    </ul>
+                    <span class="plot-price">$285,000</span>
+                    <a href="#contact" class="btn" style="width: 100%; text-align: center;">Inquire Now</a>
                 </div>
+
+                <!-- Plot 3 -->
                 <div class="plot-card">
                     <h3>The Estate</h3>
-                    <p class="dimensions">4,000 Sq.Ft — 50x80 Square Plot</p>
-                    <p class="price">Starting at $540,000</p>
-                    <button class="btn btn-gold" onclick="showSection('contact')">Private Viewing</button>
+                    <p class="subtitle">4,000 Sq.Ft</p>
+                    <ul class="plot-specs">
+                        <li><span>Dimensions</span> <span>50x80 Square Plot</span></li>
+                        <li><span>Zoning</span> <span>Luxury Mansion</span></li>
+                        <li><span>Utilities</span> <span>Full Hybrid Autonomy</span></li>
+                        <li><span>Add-ons</span> <span>Private Access Drive</span></li>
+                    </ul>
+                    <span class="plot-price">$540,000</span>
+                    <a href="#contact" class="btn btn-filled" style="width: 100%; text-align: center;">Private Viewing</a>
                 </div>
             </div>
         </section>
 
         <!-- PROJECTS SECTION -->
-        <section id="projects" class="section">
-            <h2 class="page-title">Our Portfolio</h2>
-            <p class="page-subtitle">Award-Winning Developments</p>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <h3>The Belvedere</h3>
-                    <p>A master-planned enclave featuring 50 exclusive square-foot plots, enveloped by private botanical gardens and slate-paved avenues.</p>
-                    <p class="status">Fully Acquired</p>
+        <section id="projects">
+            <div class="section-header">
+                <h2>Our Portfolio</h2>
+                <p>Award-Winning Developments</p>
+            </div>
+
+            <div class="project-row">
+                <div class="project-image">
+                    <span>The Belvedere Masterplan</span>
                 </div>
-                <div class="project-card">
+                <div class="project-info">
+                    <h3>The Belvedere Enclave</h3>
+                    <p>A master-planned residential zone featuring 50 exclusive square-foot plots. Enveloped by private botanical gardens and slate-paved avenues, The Belvedere represents our commitment to integrating nature with precise architectural zoning.</p>
+                    <p><strong>Status:</strong> Fully Acquired & Developed</p>
+                    <br>
+                    <a href="#contact" class="btn">Learn More</a>
+                </div>
+            </div>
+
+            <div class="project-row">
+                <div class="project-image">
+                    <span>Aura Manors Blueprint</span>
+                </div>
+                <div class="project-info">
                     <h3>Aura Manors</h3>
-                    <p>Architectural excellence combining hybrid slate foundations with champagne gold finishings, built upon perfectly symmetrical parcels.</p>
-                    <p class="status">Phase 2 Selling</p>
-                </div>
-                <div class="project-card">
-                    <h3>The Sterling Hub</h3>
-                    <p>Boutique commercial zoning offering elite square plots meticulously arranged for high-end luxury retail and dining.</p>
-                    <p class="status">Completion 2027</p>
+                    <p>Architectural excellence combining hybrid foundations with high-end finishings. Built entirely upon our signature 40x60 perfectly symmetrical square parcels, Aura Manors offers unmatched spacing and natural light optimization for every resident.</p>
+                    <p><strong>Status:</strong> Phase 2 Selling</p>
+                    <br>
+                    <a href="#contact" class="btn">Request Brochure</a>
                 </div>
             </div>
         </section>
 
         <!-- COMMUNITY SECTION -->
-        <section id="community" class="section">
-            <h2 class="page-title">The Community</h2>
-            <p class="page-subtitle">The Minds Behind NexEstate</p>
+        <section id="community">
+            <div class="section-header">
+                <h2>The Visionaries</h2>
+                <p>The Minds Behind NexEstate</p>
+            </div>
+
             <div class="community-grid">
-                <div class="member">
-                    <div class="avatar"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80" alt="Sarah Jenkins"></div>
+                <div class="member-card">
+                    <div class="member-avatar">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=300&q=80" alt="L. Mahadeva Balan">
+                    </div>
+                    <h4>L. Mahadeva Balan</h4>
+                    <p class="role">Founder & Visionary</p>
+                    <p>Spearheading the integration of tech-driven spatial planning and high-end real estate, ensuring every square foot meets legacy standards.</p>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-avatar">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80" alt="Sarah Jenkins">
+                    </div>
                     <h4>Sarah Jenkins</h4>
-                    <p>Principal Architect</p>
+                    <p class="role">Principal Architect</p>
+                    <p>With 15 years in luxury development, Sarah curates the structural guidelines that make our square parcels architectural masterpieces.</p>
                 </div>
-                <div class="member">
-                    <div class="avatar"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=300&q=80" alt="David Chen"></div>
-                    <h4>David Chen</h4>
-                    <p>Director of Estates</p>
-                </div>
-                <div class="member">
-                    <div class="avatar"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=300&q=80" alt="Elena Rossi"></div>
+
+                <div class="member-card">
+                    <div class="member-avatar">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=300&q=80" alt="Elena Rossi">
+                    </div>
                     <h4>Elena Rossi</h4>
-                    <p>Resident Ambassador</p>
+                    <p class="role">Client Relations</p>
+                    <p>Elena ensures a seamless acquisition process, assisting buyers from the first plot inquiry to the final handover of the estate deeds.</p>
                 </div>
             </div>
         </section>
 
         <!-- CONTACT SECTION -->
-        <section id="contact" class="section">
-            <h2 class="page-title">Private Inquiry</h2>
-            <p class="page-subtitle">Schedule a Consultation</p>
-            <div class="contact-wrapper">
+        <section id="contact">
+            <div class="section-header">
+                <h2>Private Inquiry</h2>
+                <p>Begin Your Legacy</p>
+            </div>
+
+            <div class="contact-layout">
+                <div class="contact-info">
+                    <h3>Contact Our Concierge</h3>
+                    <p>Whether you are looking to secure a 1,200 sq.ft plot for your first build, or a massive estate parcel for a legacy mansion, our team is ready to assist you.</p>
+                    <br>
+                    <p><strong style="color: var(--brass);">Office Hours:</strong><br> Monday - Friday: 9:00 AM - 6:00 PM</p>
+                    <br>
+                    <p><strong style="color: var(--brass);">Location:</strong><br> NexEstate Tower, Financial District</p>
+                    <br>
+                    <p><strong style="color: var(--brass);">Direct Line:</strong><br> +1 (800) 555-ESTATE</p>
+                </div>
+
                 <div class="contact-form">
-                    <input type="text" placeholder="Full Name" required>
-                    <input type="email" placeholder="Email Address" required>
-                    <textarea rows="3" placeholder="Which estate plot or project are you inquiring about?" required></textarea>
-                    <button class="btn btn-gold" style="width: 100%; margin-top: 10px;">Send Message</button>
+                    <form onsubmit="event.preventDefault(); alert('Inquiry Sent to NexEstate Concierge.');">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Inquiry Details (Plot Size / Project)</label>
+                            <textarea rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-filled" style="width: 100%;">Submit Inquiry</button>
+                    </form>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Global Floating Contact -->
-    <div class="floating-contact">
-        <button onclick="showSection('contact')" title="Contact Concierge">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-        </button>
-    </div>
+    <footer>
+        <p>&copy; 2026 NexEstate Legacy Parcels. All dimensions are approximate square footage.</p>
+    </footer>
 
-    <!-- Application Logic -->
-    <script>
-        function showSection(sectionId) {
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(sec => sec.classList.remove('active'));
-
-            const navLinks = document.querySelectorAll('#nav-links a');
-            navLinks.forEach(link => link.classList.remove('active'));
-
-            document.getElementById(sectionId).classList.add('active');
-
-            const activeLink = Array.from(navLinks).find(link => link.getAttribute('onclick').includes(sectionId));
-            if (activeLink) activeLink.classList.add('active');
-        }
-    </script>
 </body>
 </html>
